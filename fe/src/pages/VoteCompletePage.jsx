@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import React from "react";
 import styled from "styled-components";
 import { BeforeLoginNavBar } from '../components/BeforeLoginNavBar';
+import { AfterLoginNavBar } from '../components/AfterLoginNavBar';
 import { SubjectItem } from '../components/SubjectItem';
 import { axiosInstance } from '../api';
 
