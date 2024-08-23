@@ -71,7 +71,7 @@ const ProgressContainer = styled.div`
 const FundingBtn = styled.button`
     display: flex;
     width: 600px;
-    height: 50px;
+    height: 55px;
     padding: 16px 20px;
     justify-content: center;
     align-items: center;
@@ -122,6 +122,7 @@ const Orange = styled.span`
 const LectureDetail = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    
     useEffect(() => {
         // localStorage에서 access_token을 가져옴
         const token = localStorage.getItem('access_token');
@@ -150,11 +151,11 @@ const LectureDetail = () => {
                     <Title>네이버 출신 CTO가 말하는 백엔드 개발자 커리어의 정석</Title>
                     <DetailText>username</DetailText>
                     <ProgressContainer>
-                        <CurrentPeople>50,000원</CurrentPeople>
-                        <TotalPeople> / 200,000원</TotalPeople>
-                        <RemainPeople>개설까지 <Orange>150,000원 </Orange>남았어요.</RemainPeople>
+                        <CurrentPeople>45</CurrentPeople>
+                        <TotalPeople> / 50명</TotalPeople>
+                        <RemainPeople>개설까지 <Orange>5명 </Orange>남았어요.</RemainPeople>
                     </ProgressContainer>
-                    <FundingBtn>펀딩하기</FundingBtn>
+                    <FundingBtn>10,000 캐시 펀딩하기</FundingBtn>
                 </ColumnContainer>
             </RowContainer>
         </Container>

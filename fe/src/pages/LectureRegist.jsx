@@ -161,7 +161,7 @@ const LectureRegist = () => {
                 </TitleContainer>
                 <FormContainer>
                     <ColumnContainer>
-                        <SubTitle>대표사진 <Orange>*</Orange></SubTitle>
+                        <SubTitle>대표사진</SubTitle>
                         <ProfileImageUpload image={image} setImage={setImage} />
                     </ColumnContainer>
                     <ColumnContainer>

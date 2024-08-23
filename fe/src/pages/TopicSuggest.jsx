@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { AfterLoginNavBar } from "../components/AfterLoginNavBar.jsx";
 import { BeforeLoginNavBar } from "../components/BeforeLoginNavBar.jsx";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
     display: flex;
@@ -124,6 +125,7 @@ const DetailInput = styled.textarea`
 `
 
 const TopicSuggest = () => {
+    const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('IT');
     const categories = [
@@ -156,7 +158,7 @@ const TopicSuggest = () => {
                 <TitleContainer>
                     <Title>주제 제안하기</Title>
                     <RegisterBtn>등록하기</RegisterBtn>
-                    <CancleBtn>취소</CancleBtn>
+                    <CancleBtn onClick={() => { navigate('/topic'); }}>취소</CancleBtn>
                 </TitleContainer>
                 <FormContainer>
                     <SubTitle>카테고리</SubTitle>
