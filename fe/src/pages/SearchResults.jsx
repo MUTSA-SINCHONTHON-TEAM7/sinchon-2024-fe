@@ -18,7 +18,7 @@ const ResultPage=styled.div`
     align-items: center;
     padding:0px 145px 250px 145px;
 
-    background-color: rebeccapurple;
+    //background-color: rebeccapurple;
 `;
 
 const SearchWordContainer = styled.div`
@@ -26,7 +26,7 @@ const SearchWordContainer = styled.div`
     height:70px;
     margin-top:30px;
     margin-right: 1070px;
-    background-color: red;
+    //background-color: red;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -55,7 +55,7 @@ const VotingSubject=styled.div`
     width:1380px;
     //height:300px;
     margin-top:50px;
-    background-color: beige;
+    //background-color: beige;
 
 
     .votingText{
@@ -74,7 +74,7 @@ const VotingSubject=styled.div`
         display: flex;
         flex-wrap: wrap;
         gap:15px;
-        background-color: aqua;
+        //background-color: aqua;
         margin-top: 20px;
 
     }
@@ -84,7 +84,7 @@ const FundingSubject=styled.div`
     width:1380px;
     //height:300px;
     margin-top:40px;
-    background-color: beige;
+    //background-color: beige;
 
     .fundingText{
         color: #000;
@@ -102,7 +102,7 @@ const FundingSubject=styled.div`
         display: flex;
         flex-wrap: wrap;
         gap: 24px 15px;
-        background-color: aqua;
+        //background-color: aqua;
         margin-top: 20px;
     }
 `;
