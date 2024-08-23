@@ -173,7 +173,7 @@ export function VoteCompletePage(){
     const navigate=useNavigate();
     return(
         <VoteCompleteSpecificPage>
-            <BeforeLoginNavBar/>
+            {isLoggedIn ? <AfterLoginNavBar /> : <BeforeLoginNavBar/>}
             <SpecificInfoContainor>
                 <StatusSubject>
                     <div className="status">

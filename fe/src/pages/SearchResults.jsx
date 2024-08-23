@@ -123,7 +123,8 @@ export function SearchResults(){
 
     return(
         <ResultPage>
-           <BeforeLoginNavBar/>
+           {isLoggedIn ? <AfterLoginNavBar /> : <BeforeLoginNavBar/>}
+           
            <SearchWordContainer>
                 <SearchWordText>{searchWord}</SearchWordText>
                 <ResultText>검색결과</ResultText>
