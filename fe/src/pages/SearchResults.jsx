@@ -5,12 +5,13 @@ import React from "react";
 import styled from "styled-components";
 import { BeforeLoginNavBar } from '../components/BeforeLoginNavBar';
 import { SubjectItem } from '../components/SubjectItem';
+import { axiosInstance } from '../api';
 
 
 const ResultPage=styled.div`
     margin:auto;
     width:1620px;
-    height:2000px;
+    //height:2000px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,15 +106,16 @@ const FundingSubject=styled.div`
     }
 `;
 
-const ItemContainor=styled.div`
-        width: 330px;
-        height:215px;
-        background-color: orange;
-`;
 
-const searchWord="백엔드";
+
+//const searchWord="백엔드";
 
 export function SearchResults(){
+    //const [num,setNum]=useState(0);
+    //const [searchWord, setSearchWord] = useState("");
+    const location = useLocation();
+    const { subjectResults,lectureResults,searchWord} = location.state || {  subjectResults: [], lectureResults: [], searchWord:'' };
+
     return(
         <ResultPage>
            <BeforeLoginNavBar/>
@@ -126,21 +128,9 @@ export function SearchResults(){
                 <div className="votingText">
                     <p>투표중인 주제</p>
                     <div className="votingList">
-                        <ItemContainor>
-                            <SubjectItem/>
-                        </ItemContainor>
-                        <ItemContainor>
-                            <SubjectItem/>
-                        </ItemContainor>
-                        <ItemContainor>
-                            <SubjectItem/>
-                        </ItemContainor>
-                        <ItemContainor>
-                            <SubjectItem/>
-                        </ItemContainor>
-                        <ItemContainor>
-                            <SubjectItem/>
-                        </ItemContainor>
+                        {subjectResults.map((subject, index) => (
+                                <SubjectItem key={index} title={subject.name} />
+                            ))}
                     </div>
                 </div>
            </VotingSubject>
@@ -149,13 +139,9 @@ export function SearchResults(){
                 <div className='fundingText'>
                     <p>펀딩중인 주제</p>
                     <div className="fundingList">
-                        <SubjectItem/>
-                        <SubjectItem/>
-                        <SubjectItem/>
-                        <SubjectItem/>
-                        <SubjectItem/>
-                        <SubjectItem/>
-                        <SubjectItem/>
+                    {lectureResults.map((subject, index) => (
+                                <SubjectItem key={index} title={subject.title} />
+                            ))}
                     </div>
                 </div>
            </FundingSubject>

@@ -3,11 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import React from "react";
 import styled from "styled-components";
+import logo from "..//assets/LogoPic.png";
+import { axiosInstance } from '../api';
 
 
 const NavBarPage=styled.div`
     width:1360px;
-    height:100px;
+    height:130px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -83,20 +85,47 @@ const LogOutBtn=styled.div`
 
 export function AfterLoginNavBar(){
     const [searchWord,setSearchWord]=useState("");
-    
+    const navigate=useNavigate();
+
     const handleSearchChange=(e)=>{
         setSearchWord(e.target.value);
     };
+
+    const handleSearch=async()=>{
+        try{
+            const response=await axiosInstance.get(`/search?search=${searchWord}`)
+            
+            const subjectResults = response.data[0].map(doc => ({
+                id:doc.id,
+                name:doc.name,
+                category:doc.category
+            }));
+
+            const lectureResults=response.data[1].map(doc => ({
+                id:doc.id,
+                title:doc.title,
+                category:doc.category
+            }));
+            navigate("/searchresult", { state: { subjectResults,lectureResults, searchWord } }); 
+            console.log(response.data);
+
+
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
     
     const handleKeyDown = (e) => {       //책 검색 후 엔터버튼을 눌렀을때 책 검색이 이루어지도록 -> 돋보기 표시 클릭했을때와 같은 기능
         if (e.key === 'Enter') {
-            //handleSearch();
+            handleSearch();
         }               
     };
     return(
         <NavBarPage>
             <ServiceName>
-                <p>CareerVote</p>
+                <img src={logo} className="logoPic"></img>
+                <p>LECPICK</p>
             </ServiceName>
 
             <SearchBox>

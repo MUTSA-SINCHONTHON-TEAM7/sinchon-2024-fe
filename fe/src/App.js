@@ -5,6 +5,8 @@ import TopicSuggest from './pages/TopicSuggest.jsx';
 import LectureRegist from './pages/LectureRegist.jsx';
 import LectureDetail from './pages/LectureDetail.jsx';
 import { SearchResults } from './pages/SearchResults';
+import { VoteCompletePage } from './pages/VoteCompletePage';
+import { VotingPage } from './pages/VotingPage';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/topic-suggest" element={<TopicSuggest/>}/>
         <Route path="/lecture-regist" element={<LectureRegist/>}/>
         <Route path="/lecture/:lectureId" element={<LectureDetail/>}/>
+        <Route path="/votecompletespecific" element={<VoteCompletePage/>}/>
+        <Route path="/votingspecific" element={<VotingPage/>}/>
       </Routes>
     </>
   );
