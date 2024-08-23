@@ -3,6 +3,7 @@ import VoteList from './pages/VoteList.jsx';
 import FundingList from './pages/FundingList.jsx';
 import TopicSuggest from './pages/TopicSuggest.jsx';
 import LectureRegist from './pages/LectureRegist.jsx';
+import LectureDetail from './pages/LectureDetail.jsx';
 import { SearchResults } from './pages/SearchResults';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/searchresult" element={<SearchResults/>}/>
         <Route path="/topic-suggest" element={<TopicSuggest/>}/>
         <Route path="/lecture-regist" element={<LectureRegist/>}/>
+        <Route path="/lecture/:lectureId" element={<LectureDetail/>}/>
       </Routes>
     </>
   );
