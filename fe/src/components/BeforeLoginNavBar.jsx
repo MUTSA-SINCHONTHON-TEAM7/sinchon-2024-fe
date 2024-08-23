@@ -1,13 +1,14 @@
-import { useState ,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // useNavigate 가져오기
 import React from "react";
 import styled from "styled-components";
+import kakaoButtonImage from '../images/KakaoButtonImage.png';
+import KakaoButton from './KakaoButton';
 
-
-const NavBarPage=styled.div`
+const NavBarPage = styled.div`
     width:1360px;
-    height:200px;
+    height:130px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -15,7 +16,7 @@ const NavBarPage=styled.div`
     //background-color: red;
 `;
 
-const ServiceName=styled.div`
+const ServiceName = styled.div`
     width:163px;
     height:38px;
     color: #000;
@@ -26,21 +27,20 @@ const ServiceName=styled.div`
     line-height: normal;
 `;
 
-const SearchBox=styled.div`
-
-.find{
-    display: flex;
-    width: 584px;
-    padding: 20px;
-    align-items: center;
-    gap: 10px;
-    border-radius: 21px;
-    background: #F5F5F5;
-    border: none;
-}
+const SearchBox = styled.div`
+    .find{
+        display: flex;
+        width: 584px;
+        padding: 20px;
+        align-items: center;
+        gap: 10px;
+        border-radius: 21px;
+        background: #F5F5F5;
+        border: none;
+    }
 `;
 
-const LoginBtn=styled.div`
+const LoginBtn = styled.div`
     color: #000;
     font-family: Pretendard;
     font-size: 18px;
@@ -57,36 +57,43 @@ const LoginBtn=styled.div`
 `;
 
 export function BeforeLoginNavBar(){
-    const [searchWord,setSearchWord]=useState("");
+    const [searchWord, setSearchWord] = useState("");
+    const navigate = useNavigate(); // navigate 변수 정의
     
-    const handleSearchChange=(e)=>{
+    const handleSearchChange = (e) => {
         setSearchWord(e.target.value);
     };
     
-    const handleKeyDown = (e) => {       //책 검색 후 엔터버튼을 눌렀을때 책 검색이 이루어지도록 -> 돋보기 표시 클릭했을때와 같은 기능
+    const handleKeyDown = (e) => {       
         if (e.key === 'Enter') {
             //handleSearch();
         }               
     };
-    return(
+
+    const handleLogin = () => {
+        navigate("/login"); // navigate를 사용하여 로그인 페이지로 이동
+    };
+      
+    return (
         <NavBarPage>
             <ServiceName>
                 <p>CareerVote</p>
             </ServiceName>
 
             <SearchBox>
-                <input type="text" className="find" value={searchWord} onChange={handleSearchChange}  onKeyDown={handleKeyDown} placeholder="어떤 주제나 강의를 원하시나요?"></input>
+                <input 
+                    type="text" 
+                    className="find" 
+                    value={searchWord} 
+                    onChange={handleSearchChange}  
+                    onKeyDown={handleKeyDown} 
+                    placeholder="어떤 주제나 강의를 원하시나요?"
+                />
             </SearchBox>
 
             <LoginBtn>
-                <button className='login'>로그인</button>
+                <p className="loginButton" onClick={handleLogin}>로그인</p>
             </LoginBtn>
         </NavBarPage>
-
     );
 }
-
-
-
-
-

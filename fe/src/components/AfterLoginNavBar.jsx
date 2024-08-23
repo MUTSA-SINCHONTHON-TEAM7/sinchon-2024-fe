@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 const NavBarPage=styled.div`
     width:1360px;
-    height:100px;
+    height:130px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -93,6 +93,19 @@ export function AfterLoginNavBar(){
             //handleSearch();
         }               
     };
+
+    const handleLogout = async () => {
+        try {
+          localStorage.removeItem('access_token');
+          alert('로그아웃에 성공했습니다');
+          window.location.href = '/main';
+        } catch (error) {
+          // 오류 처리
+          console.error('Logout error:', error);
+          alert('Logout failed: an error occurred.', error);
+        }
+      };
+
     return(
         <NavBarPage>
             <ServiceName>
@@ -108,7 +121,7 @@ export function AfterLoginNavBar(){
                     <button className='mypage'>마이페이지</button>
                 </MyPageBtn>
                 <LogOutBtn>
-                    <button className='logout'>로그아웃</button>
+                    <button className='logout' onClick={handleLogout}>로그아웃</button>
                 </LogOutBtn>
             </BtnBars>
             
