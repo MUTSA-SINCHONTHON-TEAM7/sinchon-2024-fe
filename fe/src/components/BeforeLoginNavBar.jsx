@@ -106,6 +106,7 @@ export function BeforeLoginNavBar(){
 
         }
         catch(e){
+            alert('검색실패');
             console.log(e);
         }
     }
