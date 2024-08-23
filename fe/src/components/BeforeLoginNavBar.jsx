@@ -75,6 +75,8 @@ const LoginBtn = styled.div`
 export function BeforeLoginNavBar(){
     const [searchWord, setSearchWord] = useState("");
     const navigate = useNavigate(); // navigate 변수 정의
+    const [subjectResults, setSubjectResults] = useState([]); // 주제 결과 상태
+    const [lectureResults, setLectureResults] = useState([]);
     
     const handleSearchChange = (e) => {
         setSearchWord(e.target.value);
@@ -88,17 +90,20 @@ export function BeforeLoginNavBar(){
                 }
             });
             
-            const subjectResults = response.data[0].map(doc => ({
-                id:doc.id,
-                name:doc.name,
-                category:doc.category
+            const subjects = response.data[0].map(doc => ({
+                id: doc.id,
+                name: doc.name,
+                category: doc.category
             }));
 
-            const lectureResults=response.data[1].map(doc => ({
-                id:doc.id,
-                title:doc.title,
-                category:doc.category
+            const lectures = response.data[1].map(doc => ({
+                id: doc.id,
+                title: doc.title,
+                category: doc.category
             }));
+
+            setSubjectResults(subjects);
+            setLectureResults(lectures);
             
             navigate("/searchresult", { state: { subjectResults,lectureResults, searchWord } }); 
             console.log(response);
