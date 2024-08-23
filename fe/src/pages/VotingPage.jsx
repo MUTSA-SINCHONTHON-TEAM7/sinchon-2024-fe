@@ -195,30 +195,39 @@ const VotingStatus=styled.div`
 
 export function VotingPage(){
     const access_token=localStorage.getItem('access_token');
+    const location = useLocation();
+    const id = location.state?.id || '';
+    const [voteData, setVoteData] = useState(null);
+
     const handleVote=async()=>{
         try{
             const newVote={
-                subject_id: 1
+                subject_id: id
             }
             const response=await axiosInstance.post('/votes',newVote,{
                 headers:{
                     Authorization: `Bearer ${access_token}`
                   }
             })
-
+            setVoteData(response.data);
             console.log(response.data);
         }
         catch(e){
             console.log(e);
         }
     };
+
+    useEffect(() => {
+        handleVote();  
+    }, []); 
+
     return(
         <VotingSpecificPage>
-            <BeforeLoginNavBar/>
+             {isLoggedIn ? <AfterLoginNavBar /> : <BeforeLoginNavBar/>}
             <SpecificInfoContainor>
                 <StatusSubject>
                     <div className="subject">
-                        <p>IT</p>
+                        <p>{voteData.category}</p>
                     </div>
                 </StatusSubject>
 
@@ -237,7 +246,7 @@ export function VotingPage(){
                     </div>
 
                     <div className="subjectText">
-                        안녕하세요
+                        <p>voteData.subject_detail</p>
                     </div>
                 </SubjectInfo>
 
@@ -253,7 +262,7 @@ export function VotingPage(){
 
                 <VotingStatus>
                     <div className="divide">
-                        <p className="real">45명</p>
+                        <p className="real">{voteData.vote}명</p>
                         <p className="goal">/50명</p>
                     </div>
 

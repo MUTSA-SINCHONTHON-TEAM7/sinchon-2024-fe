@@ -64,7 +64,7 @@ const LoginBtn = styled.div`
     font-weight: 400;
     line-height: normal;
     background-color: white;
-
+    cursor: pointer;
     .login{
         border: none;
         background-color: white;
