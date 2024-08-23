@@ -122,7 +122,7 @@ export function BeforeLoginNavBar(){
       
     return (
         <NavBarPage>
-            <ServiceName>
+            <ServiceName onClick={()=>navigate("/")}>
                 <img src={logo} className="logoPic"></img>
                 <p>LECPICK</p>
             </ServiceName>
