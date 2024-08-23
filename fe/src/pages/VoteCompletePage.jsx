@@ -170,6 +170,7 @@ const LectureList=styled.div`
     background-color: blue;
 `;
 export function VoteCompletePage(){
+    const navigate=useNavigate();
     return(
         <VoteCompleteSpecificPage>
             <BeforeLoginNavBar/>
@@ -207,7 +208,7 @@ export function VoteCompletePage(){
                         <p>펀딩중인 강의</p>
                     </div>
 
-                    <button className="lectSuggestBtn">
+                    <button className="lectSuggestBtn" onClick={()=>navigate("/lecture-regist")}>
                         강의 제안하기
                     </button>
                 </SubjectFunding>

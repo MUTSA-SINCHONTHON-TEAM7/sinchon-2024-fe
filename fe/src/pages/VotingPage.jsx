@@ -195,10 +195,12 @@ const VotingStatus=styled.div`
 
 export function VotingPage(){
     const access_token=localStorage.getItem('access_token');
+    const location = useLocation();
+    const id = location.state?.id || '';
     const handleVote=async()=>{
         try{
             const newVote={
-                subject_id: 1
+                subject_id: id
             }
             const response=await axiosInstance.post('/votes',newVote,{
                 headers:{

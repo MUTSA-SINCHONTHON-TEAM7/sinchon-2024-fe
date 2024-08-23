@@ -113,8 +113,13 @@ const FundingSubject=styled.div`
 export function SearchResults(){
     //const [num,setNum]=useState(0);
     //const [searchWord, setSearchWord] = useState("");
+    const navigate=useNavigate();
     const location = useLocation();
     const { subjectResults,lectureResults,searchWord} = location.state || {  subjectResults: [], lectureResults: [], searchWord:'' };
+
+    const handleItemClick=(path,id)=>{
+        navigate(path,{state:{id}});
+    };
 
     return(
         <ResultPage>
@@ -129,7 +134,7 @@ export function SearchResults(){
                     <p>투표중인 주제</p>
                     <div className="votingList">
                         {subjectResults.map((subject, index) => (
-                                <SubjectItem key={index} title={subject.name} />
+                                <SubjectItem key={index} title={subject.name} onClick={()=>handleItemClick('/votingspecific',subject.id)} />
                             ))}
                     </div>
                 </div>
@@ -140,7 +145,7 @@ export function SearchResults(){
                     <p>펀딩중인 주제</p>
                     <div className="fundingList">
                     {lectureResults.map((subject, index) => (
-                                <SubjectItem key={index} title={subject.title} />
+                                <SubjectItem key={index} title={subject.title} onClick={()=>handleItemClick('/votingcompletespecific',subject.id)} />
                             ))}
                     </div>
                 </div>
