@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 const NavBarPage=styled.div`
     width:1360px;
-    height:100px;
+    height:200px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
