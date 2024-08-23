@@ -3,6 +3,7 @@ import { AfterLoginNavBar } from "../components/AfterLoginNavBar.jsx";
 import { BeforeLoginNavBar } from "../components/BeforeLoginNavBar.jsx";
 import { SubjectItem } from "../components/SubjectItem.js"
 import { useEffect, useState } from "react";
+import { axiosInstance } from "../api/index.js";
 
 const Container = styled.div`
     display: flex;
@@ -23,15 +24,6 @@ const Title = styled.div`
     font-weight: 700;
     line-height: normal;
 `
-const SuggestBtn = styled.div`
-    display: inline-flex;
-    padding: 16px 20px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 11px;
-    background: #000;
-    color: white;
-`
 const BtnContainer = styled.div`
     display: flex;
     gap: 16px;
@@ -49,15 +41,21 @@ const Btn = styled.button`
     padding: 13px 16px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 `
 const ItemContainer = styled.div`
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-wrap: wrap;
+    width: 100%;
     gap: 24px 15px;
-`
+`;
+
 const Vote = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState('IT');
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [fundings, setFundings] = useState([]); // 가져온 데이터를 저장할 상태
     const categories = [
         'IT', '영업/고객상담', '경영/사무', '마케팅/광고', '생산/제조', 
         '연구개발/설계', '의료', '무역/유통', '건설', '전문/특수직', 
@@ -79,6 +77,20 @@ const Vote = () => {
         setIsLoggedIn(false);
       }
     }, []);
+
+    useEffect(() => {
+        const fetchSubjects = async () => {
+            try {
+                const params = selectedCategory ? { category: selectedCategory } : {};
+                const response = await axiosInstance.get('/subjects/complete', { params });
+                setFundings(response.data); // 가져온 데이터를 상태에 저장
+            } catch (error) {
+                console.error('Error fetching subjects:', error);
+            }
+        };
+
+        fetchSubjects();
+    }, [selectedCategory]); // selectedCategory가 변경될 때마다 요청을 보냄
   
     return (
       <Container>
@@ -92,9 +104,13 @@ const Vote = () => {
             ))}
         </BtnContainer>
         <ItemContainer>
-            <SubjectItem imageURL="example.png" title="펀딩 제목"/>
-            <SubjectItem imageURL="example.png" title="펀딩 제목"/>
-            <SubjectItem imageURL="example.png" title="펀딩 제목"/>
+            {fundings.map((funding) => {
+                <SubjectItem
+                    key={funding.id}
+                    imageURL="example.png"
+                    title={funding.name}
+                />
+            })}
         </ItemContainer>
       </Container>
     );
