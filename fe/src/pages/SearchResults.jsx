@@ -25,7 +25,7 @@ const SearchWordContainer = styled.div`
     height:70px;
     margin-top:30px;
     margin-right: 1070px;
-    background-color: beige;
+    background-color: red;
     display: flex;
     align-items: center;
     padding: 10px;

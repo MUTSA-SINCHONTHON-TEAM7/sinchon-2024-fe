@@ -1,0 +1,63 @@
+.popup-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  width: 701px;
+  height: 369px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* 텍스트와 버튼 사이 간격을 자동으로 조절 */
+}
+
+.popup-box {
+  text-align: center;
+  width: 701px;
+  height: 410px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px; /* 모서리를 둥글게 만들고 싶다면 */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+.popup-box p {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 30px;
+  padding-top: 0px;
+}
+
+.kakaoButton {
+  cursor: pointer;
+  margin-bottom: 0px;
+}
+
+.popup-box p1 {
+  color: #000;
+font-feature-settings: 'liga' off, 'clig' off;
+font-family: Pretendard;
+font-size: 24px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%;
+}
+
+.popup-box p2 {
+  color: #FF7134;
+text-align: center;
+font-feature-settings: 'liga' off, 'clig' off;
+font-family: Poppins;
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: 150%; /* 36px */
+}
