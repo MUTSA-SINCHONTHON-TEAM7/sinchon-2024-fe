@@ -15,10 +15,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/main' element={<Main/>}/>
+        <Route path='/' element={<Main/>}/>
         <Route path="/oauth2/kakao" element={<KakaoLogRedirect />} />
         <Route path="/login" element={<Login />} />
-        <Route path='/vote' element={<VoteList/>}/>
         <Route path='/topic' element={<TopicList/>}/>
         <Route path='/funding' element={<FundingList/>}/>
         <Route path="/searchresult" element={<SearchResults/>}/>

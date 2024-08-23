@@ -126,7 +126,7 @@ export function AfterLoginNavBar(){
         try {
           localStorage.removeItem('access_token');
           alert('로그아웃에 성공했습니다');
-          window.location.href = '/main';
+          window.location.href = '/';
         } catch (error) {
           // 오류 처리
           console.error('Logout error:', error);

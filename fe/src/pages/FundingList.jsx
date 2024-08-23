@@ -4,6 +4,7 @@ import { BeforeLoginNavBar } from "../components/BeforeLoginNavBar.jsx";
 import { SubjectItem } from "../components/SubjectItem.js"
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../api/index.js";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
     display: flex;
@@ -53,6 +54,7 @@ const ItemContainer = styled.div`
 `;
 
 const Vote = () => {
+    const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [fundings, setFundings] = useState([]); // 가져온 데이터를 저장할 상태
@@ -65,6 +67,10 @@ const Vote = () => {
       
     const handleClick = (category) => {
         setSelectedCategory(category);
+    };
+
+    const handleSubjectClick = (lectureId) => {
+        navigate(`/lecture/${lectureId}`);
     };
     
     useEffect(() => {
@@ -104,13 +110,14 @@ const Vote = () => {
             ))}
         </BtnContainer>
         <ItemContainer>
-            {fundings.map((funding) => {
+            {fundings.map((funding) => (
                 <SubjectItem
                     key={funding.id}
                     imageURL="example.png"
                     title={funding.name}
+                    onClick={() => handleSubjectClick(funding.id)}
                 />
-            })}
+            ))}
         </ItemContainer>
       </Container>
     );

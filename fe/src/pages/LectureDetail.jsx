@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { AfterLoginNavBar } from "../components/AfterLoginNavBar.jsx";
 import { BeforeLoginNavBar } from "../components/BeforeLoginNavBar.jsx";
 import { useState, useEffect } from "react";
+import { axiosInstance } from "../api/index.js";
+import { useParams } from 'react-router-dom'; // useParams 훅을 import
 
 const Container = styled.div`
     display: flex;
@@ -121,7 +123,24 @@ const Orange = styled.span`
 `
 const LectureDetail = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { lectureId } = useParams(); // useParams를 사용하여 lectureId를 가져옴
+    const [lectureData, setLectureData] = useState(null); // 강의 데이터를 저장할 상태
 
+    useEffect(() => {
+        // lectureId를 이용하여 API 요청을 보냄
+        const fetchLectureDetails = async () => {
+            try {
+                const response = await axiosInstance.get(`/lectures/${lectureId}`);
+                setLectureData(response.data); // 받아온 데이터를 상태에 저장
+            } catch (error) {
+                console.error('Error fetching lecture details:', error);
+            }
+        };
+
+        if (lectureId) {
+            fetchLectureDetails();
+        }
+    }, [lectureId]);
     
     useEffect(() => {
         // localStorage에서 access_token을 가져옴
@@ -134,6 +153,8 @@ const LectureDetail = () => {
         }
     }, []);
 
+    const totalPeople = Math.ceil(lectureData.min_total_cost / lectureData.cost)
+
     return(
         <Container>
             {isLoggedIn ? <AfterLoginNavBar /> : <BeforeLoginNavBar/>}
@@ -142,20 +163,19 @@ const LectureDetail = () => {
                     <LectureImg/>
                     <Title>강의 소개</Title>
                     <DetailText>
-                    개발 공부를 시작하고도 갈피를 못 잡는 분들, 백엔드 개발자의 커리어를 어떻게 쌓아야 할지 막막한 분들, 나는 프론트엔드가 맞을까? 백엔드가 맞을까? 고민이신 분들이라면 모두 주목해주세요.
-                    네이버에서 커리어를 시작해 현재 스타트업을 거쳐 대기업의 CTO가 되기까지. 다수의 채용 면접을 진행하고 개발 조직을 이끌면서 느꼈던 경험과 지식을 체계적으로 정리하여 전달합니다. 주니어 백엔드 개발자가 갖추어야 할 실력, 그리고 취업을 하기 위해 갖추어야 할 경험, 그리고 회사 생활에 필요한 역량까지 클래스에 모두 담았습니다.
+                    {lectureData.lecture_detail}
                     </DetailText>
                 </ColumnContainer>
                 <ColumnContainer>
-                    <Category>IT</Category>
-                    <Title>네이버 출신 CTO가 말하는 백엔드 개발자 커리어의 정석</Title>
+                    <Category>{lectureData.category}</Category>
+                    <Title>{lectureData.title}</Title>
                     <DetailText>username</DetailText>
                     <ProgressContainer>
-                        <CurrentPeople>45</CurrentPeople>
-                        <TotalPeople> / 50명</TotalPeople>
-                        <RemainPeople>개설까지 <Orange>5명 </Orange>남았어요.</RemainPeople>
+                        <CurrentPeople>{lectureData.funding_count}</CurrentPeople>
+                        <TotalPeople> / {totalPeople}명</TotalPeople>
+                        <RemainPeople>개설까지 <Orange>{totalPeople - lectureData.funding_count}명 </Orange>남았어요.</RemainPeople>
                     </ProgressContainer>
-                    <FundingBtn>10,000 캐시 펀딩하기</FundingBtn>
+                    <FundingBtn>{lectureData.cost} 캐시 펀딩하기</FundingBtn>
                 </ColumnContainer>
             </RowContainer>
         </Container>
