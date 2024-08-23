@@ -99,8 +99,9 @@ export function BeforeLoginNavBar(){
                 title:doc.title,
                 category:doc.category
             }));
+            
             navigate("/searchresult", { state: { subjectResults,lectureResults, searchWord } }); 
-            console.log(response.data);
+            console.log(response);
 
 
         }
