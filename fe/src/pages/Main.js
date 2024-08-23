@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { axiosInstance } from "../api/index.js";
 import { SubjectItem } from "../components/SubjectItem.js"; 
 import { UsersPickItem } from "../components/UsersPickItem.js";
 import { AfterLoginNavBar } from "../components/AfterLoginNavBar.jsx";
 import { BeforeLoginNavBar } from "../components/BeforeLoginNavBar.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
     margin: auto;
@@ -123,6 +124,7 @@ const ToggleWrapper = styled.div`
 `;
 
 const Vote = () => {
+    const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('IT');
     const [currentPage, setCurrentPage] = useState(0);
@@ -147,14 +149,14 @@ const Vote = () => {
 
     useEffect(() => {
         // Fetch data for /subjects/progress
-        axios.get('/subjects/progress')
+        axiosInstance.get('/subjects/progress')
             .then(response => {
                 setItems(response.data);
             })
             .catch(error => console.error('Error fetching progress subjects:', error));
 
         // Fetch data for /subjects/complete
-        axios.get('/subjects/complete')
+        axiosInstance.get('/subjects/complete')
             .then(response => {
                 setCompleteSubjects(response.data);
             })
@@ -163,14 +165,14 @@ const Vote = () => {
 
     useEffect(() => {
         // Fetch data for /subjects/progress?category=string
-        axios.get(`/subjects/progress?category=${selectedCategory}`)
+        axiosInstance.get(`/subjects/progress?category=${selectedCategory}`)
             .then(response => {
                 setProgressSubjects(response.data);
             })
             .catch(error => console.error('Error fetching category progress subjects:', error));
 
         // Fetch data for /subjects/complete?category=string
-        axios.get(`/subjects/complete?category=${selectedCategory}`)
+        axiosInstance.get(`/subjects/complete?category=${selectedCategory}`)
             .then(response => {
                 setCompleteSubjects(response.data);
             })
@@ -223,8 +225,8 @@ const Vote = () => {
             ))}
         </ItemContainer>
         <ButtonWrapper>
-            <ProposeBtn>주제 제안하기</ProposeBtn>
-            <SeeMoreBtn>더보기</SeeMoreBtn>
+            <ProposeBtn onClick={() => { navigate('/topic-suggest'); }}>주제 제안하기</ProposeBtn>
+            <SeeMoreBtn onClick={() => { navigate('/topic'); }}>더보기</SeeMoreBtn>
         </ButtonWrapper>
 
         {/* 펀딩 중인 주제 섹션 */}
@@ -242,7 +244,7 @@ const Vote = () => {
             ))}
         </ItemContainer>
         <ButtonWrapper>
-            <SeeMoreBtn>더보기</SeeMoreBtn>
+            <SeeMoreBtn onClick={() => { navigate('funding'); }}>더보기</SeeMoreBtn>
         </ButtonWrapper>
       </Container>
     );
