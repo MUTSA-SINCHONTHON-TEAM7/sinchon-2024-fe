@@ -1,0 +1,10 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  overflow-x: hidden; /* y축 스크롤이 생기면서 100vw가 다 보이지 못하는 문제 해결 */
+}
