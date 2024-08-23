@@ -3,6 +3,7 @@ import { AfterLoginNavBar } from "../components/AfterLoginNavBar.jsx";
 import { BeforeLoginNavBar } from "../components/BeforeLoginNavBar.jsx";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "../api/index.js";
 
 const Container = styled.div`
     display: flex;
@@ -151,13 +152,33 @@ const TopicSuggest = () => {
           setIsLoggedIn(false);
         }
     }, []);
+
+    const submit = async () => {
+        const topicData = {
+            name: title,
+            subject_datail: detail,
+            category: selectedCategory
+        }
+
+        try {
+            const accessToken = localStorage.getItem('access_token');
+            const response = await axiosInstance.post('/subjects', topicData, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            });
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
     return(
         <Container>
             {isLoggedIn ? <AfterLoginNavBar /> : <BeforeLoginNavBar/>}
             <BodyContainer>
                 <TitleContainer>
                     <Title>주제 제안하기</Title>
-                    <RegisterBtn>등록하기</RegisterBtn>
+                    <RegisterBtn onClick={submit}>등록하기</RegisterBtn>
                     <CancleBtn onClick={() => { navigate('/topic'); }}>취소</CancleBtn>
                 </TitleContainer>
                 <FormContainer>

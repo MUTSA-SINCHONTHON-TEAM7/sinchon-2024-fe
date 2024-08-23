@@ -3,6 +3,7 @@ import { AfterLoginNavBar } from "../components/AfterLoginNavBar.jsx";
 import { BeforeLoginNavBar } from "../components/BeforeLoginNavBar.jsx";
 import { useState, useEffect } from "react";
 import { ProfileImageUpload } from "../components/ProfileImgUpload.js";
+import { axiosInstance } from "../api/index.js";
 
 const Container = styled.div`
     display: flex;
@@ -150,6 +151,27 @@ const LectureRegist = () => {
           setIsLoggedIn(false);
         }
     }, []);
+
+    /*const submit = async () => {
+        const topicData = {
+            name: title,
+            subject_datail: detail,
+            category: selectedCategory
+        }
+
+        try {
+            const accessToken = localStorage.getItem('access_token');
+            const response = await axiosInstance.post('/subjects', topicData, {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            });
+
+        } catch (error) {
+            console.error(error);
+        }
+    }*/
+
     return(
         <Container>
             {isLoggedIn ? <AfterLoginNavBar /> : <BeforeLoginNavBar/>}
