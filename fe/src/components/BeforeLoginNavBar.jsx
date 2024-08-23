@@ -82,7 +82,11 @@ export function BeforeLoginNavBar(){
 
     const handleSearch=async()=>{
         try{
-            const response=await axiosInstance.get(`/search?search=${searchWord}`)
+            const response=await axiosInstance.get('/search',{
+                params:{
+                    search:searchWord
+                }
+            });
             
             const subjectResults = response.data[0].map(doc => ({
                 id:doc.id,
