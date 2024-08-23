@@ -14,7 +14,6 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 0px 145px 250px 145px;
-    background-color: rebeccapurple;
 `;
 
 const TitleContainer = styled.div`
@@ -78,6 +77,7 @@ const ProposeBtn = styled.button`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    cursor: pointer;
 `;
 
 const SeeMoreBtn = styled.button`
@@ -93,6 +93,7 @@ const SeeMoreBtn = styled.button`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    cursor: pointer;
 `;
 
 const ItemContainer = styled.div`
