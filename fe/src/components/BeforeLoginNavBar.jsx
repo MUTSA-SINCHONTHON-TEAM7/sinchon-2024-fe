@@ -5,6 +5,8 @@ import React from "react";
 import styled from "styled-components";
 import kakaoButtonImage from '../images/KakaoButtonImage.png';
 import KakaoButton from './KakaoButton';
+import logo from "..//assets/LogoPic.png";
+import { axiosInstance } from '../api';
 
 const NavBarPage = styled.div`
     width:1360px;
@@ -20,11 +22,25 @@ const ServiceName = styled.div`
     width:163px;
     height:38px;
     color: #000;
-    font-family: Pretendard;
-    font-size: 25px;
+
+    font-family: Poppins;
+    font-size: 32px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: normal;
+
+    display: flex;
+    flex-direction: row;
+
+    .logoPic{
+        width:25px;
+        height: 25px;
+        margin-top: 10px;
+    }
+
+    p{
+        margin-left: 8px;
+    }
 `;
 
 const SearchBox = styled.div`
@@ -63,10 +79,35 @@ export function BeforeLoginNavBar(){
     const handleSearchChange = (e) => {
         setSearchWord(e.target.value);
     };
+
+    const handleSearch=async()=>{
+        try{
+            const response=await axiosInstance.get(`/search?search=${searchWord}`)
+            
+            const subjectResults = response.data[0].map(doc => ({
+                id:doc.id,
+                name:doc.name,
+                category:doc.category
+            }));
+
+            const lectureResults=response.data[1].map(doc => ({
+                id:doc.id,
+                title:doc.title,
+                category:doc.category
+            }));
+            navigate("/searchresult", { state: { subjectResults,lectureResults, searchWord } }); 
+            console.log(response.data);
+
+
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
     
     const handleKeyDown = (e) => {       
         if (e.key === 'Enter') {
-            //handleSearch();
+            handleSearch();
         }               
     };
 
@@ -77,7 +118,8 @@ export function BeforeLoginNavBar(){
     return (
         <NavBarPage>
             <ServiceName>
-                <p>CareerVote</p>
+                <img src={logo} className="logoPic"></img>
+                <p>LECPICK</p>
             </ServiceName>
 
             <SearchBox>
