@@ -156,7 +156,7 @@ const TopicSuggest = () => {
     const submit = async () => {
         const topicData = {
             name: title,
-            subject_datail: detail,
+            subject_detail: detail,
             category: selectedCategory
         }
 
@@ -167,6 +167,7 @@ const TopicSuggest = () => {
                     Authorization: `Bearer ${accessToken}`
                 }
             });
+            navigate('/topic');
 
         } catch (error) {
             console.error(error);

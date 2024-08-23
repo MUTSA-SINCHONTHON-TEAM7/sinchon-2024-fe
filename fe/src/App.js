@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Main/>}/>
+        <Route path="/" element={<Main/>}/>
         <Route path="/oauth2/kakao" element={<KakaoLogRedirect />} />
         <Route path="/login" element={<Login />} />
         <Route path='/topic' element={<TopicList/>}/>
