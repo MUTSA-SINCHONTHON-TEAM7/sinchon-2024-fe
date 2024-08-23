@@ -172,6 +172,7 @@ const LectureList=styled.div`
 `;
 export function VoteCompletePage(){
     const navigate=useNavigate();
+    //const id = location.state?.id || '';
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {

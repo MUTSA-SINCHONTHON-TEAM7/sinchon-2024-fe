@@ -197,7 +197,7 @@ const VotingStatus=styled.div`
 export function VotingPage(){
     const access_token=localStorage.getItem('access_token');
     const location = useLocation();
-    const id = location.state?.id || '';
+    const id = location.state?.selectedSubject.id || '';
     const [voteData, setVoteData] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -240,7 +240,7 @@ export function VotingPage(){
             <SpecificInfoContainor>
                 <StatusSubject>
                     <div className="subject">
-                        <p>{voteData.category}</p>
+                        <p>IT</p>
                     </div>
                 </StatusSubject>
 
@@ -259,7 +259,7 @@ export function VotingPage(){
                     </div>
 
                     <div className="subjectText">
-                        <p>voteData.subject_detail</p>
+                        <p>저는 개발 공부를 시작했지만 백엔드 개발자의 커리어를 어떻게 쌓아야 할지 막막합니다. 나는 프론트엔드가 맞을까? 백엔드가 맞을까? 고민도 됩니다. 채용 면접이나 개발 조직에서 살아남기 위해 필요한 역량을 알고 싶어요.또 주니어 백엔드 개발자가 갖추어야 할 실력, 그리고 취업을 하기 위해 갖추어야 할 경험도 궁금합니다. 같이 강의 듣고 취뽀해요!</p>
                     </div>
                 </SubjectInfo>
 
@@ -275,7 +275,7 @@ export function VotingPage(){
 
                 <VotingStatus>
                     <div className="divide">
-                        <p className="real">{voteData.vote}명</p>
+                        <p className="real">45명</p>
                         <p className="goal">/50명</p>
                     </div>
 
