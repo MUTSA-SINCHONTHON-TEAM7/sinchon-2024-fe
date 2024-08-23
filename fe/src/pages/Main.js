@@ -126,6 +126,7 @@ const ToggleWrapper = styled.div`
 const Vote = () => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [selectedCategory1, setSelectedCategory1] = useState('IT');
     const [selectedCategory, setSelectedCategory] = useState('IT');
     const [currentPage, setCurrentPage] = useState(0);
     const [items, setItems] = useState([]);
@@ -177,9 +178,13 @@ const Vote = () => {
                 setCompleteSubjects(response.data);
             })
             .catch(error => console.error('Error fetching category complete subjects:', error));
-    }, [selectedCategory]);
+    }, [selectedCategory1]);
 
-    const handleClick = (category) => {
+    const handleClick1 = (category1) => {
+        setSelectedCategory1(category1);
+    };
+
+    const handleClick2 = (category) => {
         setSelectedCategory(category);
     };
 
@@ -215,8 +220,8 @@ const Vote = () => {
             <Title>PICK을 기다리는 주제</Title>
         </TitleContainer>
         <BtnContainer>
-            {categories.map((category) => (
-                <Btn key={category} selected={selectedCategory === category} onClick={() => handleClick(category)}>{category}</Btn>
+            {categories.map((category1) => (
+                <Btn key={category1} selected={selectedCategory1 === category1} onClick={() => handleClick1(category1)}>{category1}</Btn>
             ))}
         </BtnContainer>
         <ItemContainer>
@@ -235,7 +240,7 @@ const Vote = () => {
         </TitleContainer>
         <BtnContainer>
             {categories.map((category) => (
-                <Btn key={category} selected={selectedCategory === category} onClick={() => handleClick(category)}>{category}</Btn>
+                <Btn key={category} selected={selectedCategory === category} onClick={() => handleClick2(category)}>{category}</Btn>
             ))}
         </BtnContainer>
         <ItemContainer>
