@@ -70,7 +70,7 @@ const Vote = () => {
     };
 
     const handleSubjectClick = (lectureId) => {
-        navigate(`/lecture/${lectureId}`);
+        navigate(`/lecture/1`);
     };
     
     useEffect(() => {

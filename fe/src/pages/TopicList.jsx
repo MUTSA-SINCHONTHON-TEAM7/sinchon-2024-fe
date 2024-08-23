@@ -126,6 +126,7 @@ const Vote = () => {
                         imageURL="example.png"
                         title={subject.name}
                         overlayText={overlayText}
+                        onClick={() => { navigate('/votingspecific'); }}
                     />
                 );
             })}
