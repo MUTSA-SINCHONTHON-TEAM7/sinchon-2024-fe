@@ -22,7 +22,7 @@ const VotingSpecificPage=styled.div`
 const SpecificInfoContainor=styled.div`
     width:1380px;
     //height:800px;
-    background-color: beige ;
+    //background-color: beige ;
 `;
 
 const StatusSubject=styled.div`
@@ -31,7 +31,7 @@ const StatusSubject=styled.div`
     display:flex;
     flex-direction: row;
     align-items: center;
-    background-color: red;
+    //background-color: red;
     margin-top:20px;
     
     .status{
@@ -81,7 +81,7 @@ const SubjectInfo=styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color:aqua;
+    //background-color:aqua;
     
     .subjectTitle{
         width:1000px;
@@ -94,14 +94,14 @@ const SubjectInfo=styled.div`
         line-height: normal;    
         margin-top: 20px;
         margin-left: 10px;
-        background-color:red;
+        //background-color:red;
     }
 
     .subjectWriterInfo{
         width:400px;
         height:28px;
         margin-left: 10px;
-        background-color: aliceblue;
+        //background-color: aliceblue;
     }
 
     .subjectText{
@@ -115,7 +115,7 @@ const SubjectInfo=styled.div`
         font-style: normal;
         font-weight: 400;
         line-height: 175%;
-        background-color: blue;
+        //background-color: blue;
     }
 `;
 
@@ -128,7 +128,7 @@ const SubjectTexts=styled.div`
 
     margin-top: 40px;
     margin-left: 10px;
-    background-color: orange;
+    //background-color: orange;
 
     .text1{
         color: #000;
@@ -151,7 +151,7 @@ const VotingStatus=styled.div`
     display: flex;
     flex-direction: row;
     margin-left: 10px;
-    background-color: bisque;
+    //background-color: bisque;
 
     .divide{
         width:140px;
