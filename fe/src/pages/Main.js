@@ -182,10 +182,12 @@ const Vote = () => {
 
     const handleClick1 = (category1) => {
         setSelectedCategory1(category1);
+        navigate("/votingspecific", { state: { id: selectedSubject.id } });
     };
 
     const handleClick2 = (category) => {
         setSelectedCategory(category);
+        navigate("/votingspecific", { state: { id: completeSubjects.id } });
     };
 
     const handleToggle = (direction) => {
