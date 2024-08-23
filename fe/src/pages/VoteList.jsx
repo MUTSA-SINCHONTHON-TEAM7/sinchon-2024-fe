@@ -29,7 +29,7 @@ const SuggestBtn = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 11px;
-    background: #000;
+    background: #FF7134;
     color: white;
 `
 const BtnContainer = styled.div`
@@ -49,12 +49,16 @@ const Btn = styled.button`
     padding: 13px 16px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 `
 const ItemContainer = styled.div`
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-wrap: wrap;
+    width: 100%;
     gap: 24px 15px;
-`
+`;
 const Vote = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('IT');

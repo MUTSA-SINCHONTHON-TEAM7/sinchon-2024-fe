@@ -23,15 +23,6 @@ const Title = styled.div`
     font-weight: 700;
     line-height: normal;
 `
-const SuggestBtn = styled.div`
-    display: inline-flex;
-    padding: 16px 20px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 11px;
-    background: #000;
-    color: white;
-`
 const BtnContainer = styled.div`
     display: flex;
     gap: 16px;
@@ -49,12 +40,17 @@ const Btn = styled.button`
     padding: 13px 16px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 `
 const ItemContainer = styled.div`
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-wrap: wrap;
+    width: 100%;
     gap: 24px 15px;
-`
+`;
+
 const Vote = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState('IT');
@@ -92,9 +88,8 @@ const Vote = () => {
             ))}
         </BtnContainer>
         <ItemContainer>
-            <SubjectItem imageURL="example.png" title="펀딩 제목"/>
-            <SubjectItem imageURL="example.png" title="펀딩 제목"/>
-            <SubjectItem imageURL="example.png" title="펀딩 제목"/>
+            <SubjectItem imageURL="example.png" title="강의 투표 제목"/>
+            <SubjectItem imageURL="example.png" title="강의 투표 제목"/>
         </ItemContainer>
       </Container>
     );
