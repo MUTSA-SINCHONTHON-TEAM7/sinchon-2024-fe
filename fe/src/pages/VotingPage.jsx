@@ -199,6 +199,18 @@ export function VotingPage(){
     const location = useLocation();
     const id = location.state?.id || '';
     const [voteData, setVoteData] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        // localStorage에서 access_token을 가져옴
+        const token = localStorage.getItem('access_token');
+        // 토큰이 있으면 로그인 상태로 설정
+        if (token) {
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+    }, []);
 
     const handleVote=async()=>{
         try{

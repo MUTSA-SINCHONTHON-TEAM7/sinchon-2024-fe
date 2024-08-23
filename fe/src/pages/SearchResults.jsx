@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import React from "react";
 import styled from "styled-components";
 import { BeforeLoginNavBar } from '../components/BeforeLoginNavBar';
+import { AfterLoginNavBar } from '../components/AfterLoginNavBar';
 import { SubjectItem } from '../components/SubjectItem';
 import { axiosInstance } from '../api';
 
@@ -116,11 +117,22 @@ export function SearchResults(){
     const navigate=useNavigate();
     const location = useLocation();
     const { subjectResults,lectureResults,searchWord} = location.state || {  subjectResults: [], lectureResults: [], searchWord:'' };
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleItemClick=(path,id)=>{
         navigate(path,{state:{id}});
     };
 
+    useEffect(() => {
+        // localStorage에서 access_token을 가져옴
+        const token = localStorage.getItem('access_token');
+        // 토큰이 있으면 로그인 상태로 설정
+        if (token) {
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+    }, []);
     return(
         <ResultPage>
            {isLoggedIn ? <AfterLoginNavBar /> : <BeforeLoginNavBar/>}

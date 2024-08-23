@@ -172,6 +172,18 @@ const LectureList=styled.div`
 `;
 export function VoteCompletePage(){
     const navigate=useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        // localStorage에서 access_token을 가져옴
+        const token = localStorage.getItem('access_token');
+        // 토큰이 있으면 로그인 상태로 설정
+        if (token) {
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+    }, []);
     return(
         <VoteCompleteSpecificPage>
             {isLoggedIn ? <AfterLoginNavBar /> : <BeforeLoginNavBar/>}
