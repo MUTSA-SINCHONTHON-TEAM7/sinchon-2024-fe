@@ -3,11 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import React from "react";
 import styled from "styled-components";
+import logo from "..//assets/LogoPic.png";
+import { axiosInstance } from '../api';
 
 
 const NavBarPage=styled.div`
     width:1360px;
-    height:200px;
+    height:130px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -19,11 +21,25 @@ const ServiceName=styled.div`
     width:163px;
     height:38px;
     color: #000;
-    font-family: Pretendard;
-    font-size: 25px;
+
+    font-family: Poppins;
+    font-size: 32px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: normal;
+
+    display: flex;
+    flex-direction: row;
+
+    .logoPic{
+        width:25px;
+        height: 25px;
+        margin-top: 10px;
+    }
+
+    p{
+        margin-left: 8px;
+    }
 `;
 
 const SearchBox=styled.div`
@@ -57,21 +73,48 @@ const LoginBtn=styled.div`
 `;
 
 export function BeforeLoginNavBar(){
+    const navigate=useNavigate();
     const [searchWord,setSearchWord]=useState("");
     
     const handleSearchChange=(e)=>{
         setSearchWord(e.target.value);
     };
+
+    const handleSearch=async()=>{
+        try{
+            const response=await axiosInstance.get(`/search?search=${searchWord}`)
+            
+            const subjectResults = response.data[0].map(doc => ({
+                id:doc.id,
+                name:doc.name,
+                category:doc.category
+            }));
+
+            const lectureResults=response.data[1].map(doc => ({
+                id:doc.id,
+                title:doc.title,
+                category:doc.category
+            }));
+            navigate("/searchresult", { state: { subjectResults,lectureResults, searchWord } }); 
+            console.log(response.data);
+
+
+        }
+        catch(e){
+            console.log(e);
+        }
+    }
     
     const handleKeyDown = (e) => {       //책 검색 후 엔터버튼을 눌렀을때 책 검색이 이루어지도록 -> 돋보기 표시 클릭했을때와 같은 기능
         if (e.key === 'Enter') {
-            //handleSearch();
+            handleSearch();
         }               
     };
     return(
         <NavBarPage>
             <ServiceName>
-                <p>CareerVote</p>
+                <img src={logo} className="logoPic"></img>
+                <p>LECPICK</p>
             </ServiceName>
 
             <SearchBox>
